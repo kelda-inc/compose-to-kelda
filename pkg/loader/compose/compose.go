@@ -25,7 +25,7 @@ import (
 
 	"github.com/docker/libcompose/project"
 	"github.com/fatih/structs"
-	"github.com/kubernetes/kompose/pkg/kobject"
+	"github.com/kelda-inc/compose-to-kelda/pkg/kobject"
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
 )

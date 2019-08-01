@@ -17,7 +17,7 @@ limitations under the License.
 package transformer
 
 import (
-	"github.com/kubernetes/kompose/pkg/kobject"
+	"github.com/kelda-inc/compose-to-kelda/pkg/kobject"
 	"k8s.io/kubernetes/pkg/runtime"
 )
 

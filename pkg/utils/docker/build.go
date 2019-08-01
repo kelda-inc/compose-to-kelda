@@ -19,7 +19,7 @@ package docker
 import (
 	"bytes"
 	dockerlib "github.com/fsouza/go-dockerclient"
-	"github.com/kubernetes/kompose/pkg/utils/archive"
+	"github.com/kelda-inc/compose-to-kelda/pkg/utils/archive"
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"

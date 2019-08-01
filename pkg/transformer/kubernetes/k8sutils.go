@@ -32,8 +32,8 @@ import (
 
 	"github.com/ghodss/yaml"
 	"github.com/joho/godotenv"
-	"github.com/kubernetes/kompose/pkg/kobject"
-	"github.com/kubernetes/kompose/pkg/transformer"
+	"github.com/kelda-inc/compose-to-kelda/pkg/kobject"
+	"github.com/kelda-inc/compose-to-kelda/pkg/transformer"
 	log "github.com/sirupsen/logrus"
 
 	"k8s.io/kubernetes/pkg/api"

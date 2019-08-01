@@ -21,13 +21,13 @@ type Loader interface {
 
 Every loader “implementation” should be placed into `kompose/pkg/loader` (like compose & bundle). More input formats will be supported in future. You can take a look for more details at:
 
-* [kompose/pkg/loader](https://github.com/kubernetes/kompose/tree/master/pkg/loader)
-* [kompose/pkg/loader/bundle](https://github.com/kubernetes/kompose/tree/master/pkg/loader/bundle)
-* [kompose/pkg/loader/compose](https://github.com/kubernetes/kompose/tree/master/pkg/loader/compose)
+* [kompose/pkg/loader](https://github.com/kelda-inc/compose-to-kelda/tree/master/pkg/loader)
+* [kompose/pkg/loader/bundle](https://github.com/kelda-inc/compose-to-kelda/tree/master/pkg/loader/bundle)
+* [kompose/pkg/loader/compose](https://github.com/kelda-inc/compose-to-kelda/tree/master/pkg/loader/compose)
 
 ## KomposeObject
 
-`KomposeObject` is Kompose internal representation of all containers loaded from input file. First version of `KomposeObject` looks like this (source: [kobject.go](https://github.com/kubernetes/kompose/blob/master/pkg/kobject/kobject.go)):
+`KomposeObject` is Kompose internal representation of all containers loaded from input file. First version of `KomposeObject` looks like this (source: [kobject.go](https://github.com/kelda-inc/compose-to-kelda/blob/master/pkg/kobject/kobject.go)):
 
 ```go
 // KomposeObject holds the generic struct of Kompose transformation
@@ -73,9 +73,9 @@ type Transformer interface {
 
 If you wish to add more providers which contain different kind of objects, transformer would be the place to look into. At this moment Kompose supports Kubernetes (by default) and Openshift providers. More details at:
 
-* [kompose/pkg/transformer](https://github.com/kubernetes/kompose/tree/master/pkg/transformer)
-* [kompose/pkg/transformer/kubernetes](https://github.com/kubernetes/kompose/tree/master/pkg/transformer/kubernetes)
-* [kompose/pkg/transformer/openshift](https://github.com/kubernetes/kompose/tree/master/pkg/transformer/openshift)
+* [kompose/pkg/transformer](https://github.com/kelda-inc/compose-to-kelda/tree/master/pkg/transformer)
+* [kompose/pkg/transformer/kubernetes](https://github.com/kelda-inc/compose-to-kelda/tree/master/pkg/transformer/kubernetes)
+* [kompose/pkg/transformer/openshift](https://github.com/kelda-inc/compose-to-kelda/tree/master/pkg/transformer/openshift)
 
 ## Outputter
 

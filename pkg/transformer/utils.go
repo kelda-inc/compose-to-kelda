@@ -24,14 +24,14 @@ import (
 	"path"
 	"strings"
 
-	"github.com/kubernetes/kompose/pkg/kobject"
+	"github.com/kelda-inc/compose-to-kelda/pkg/kobject"
 	log "github.com/sirupsen/logrus"
 
 	"path/filepath"
 
-	"github.com/kubernetes/kompose/pkg/utils/docker"
+	"github.com/kelda-inc/compose-to-kelda/pkg/utils/docker"
 
-	"github.com/kubernetes/kompose/pkg/version"
+	"github.com/kelda-inc/compose-to-kelda/pkg/version"
 
 	"github.com/pkg/errors"
 	"k8s.io/kubernetes/pkg/api"
@@ -79,7 +79,7 @@ func ParseVolume(volume string) (name, host, container, mode string, err error) 
 	possibleAccessMode := volumeStrings[len(volumeStrings)-1]
 
 	// Check to see if :Z or :z exists. We do not support SELinux relabeling at the moment.
-	// See https://github.com/kubernetes/kompose/issues/176
+	// See https://github.com/kelda-inc/compose-to-kelda/issues/176
 	// Otherwise, check to see if "rw" or "ro" has been passed
 	if possibleAccessMode == "z" || possibleAccessMode == "Z" {
 		log.Warnf("Volume mount \"%s\" will be mounted without labeling support. :z or :Z not supported", volume)

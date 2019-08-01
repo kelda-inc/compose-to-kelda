@@ -8,7 +8,7 @@
 
 ## Use Case
 
-Convert [`docker-compose.yaml`](https://raw.githubusercontent.com/kubernetes/kompose/master/examples/docker-compose.yaml) into Kubernetes deployments and services with one simple command:
+Convert [`docker-compose.yaml`](https://raw.githubusercontent.com/kelda-inc/compose-to-kelda/master/examples/docker-compose.yaml) into Kubernetes deployments and services with one simple command:
 
 ```sh
 $ kompose convert -f docker-compose.yaml
@@ -39,16 +39,16 @@ Installation methods:
 
 #### Binary installation
 
-Kompose is released via GitHub on a three-week cycle, you can see all current releases on the [GitHub release page](https://github.com/kubernetes/kompose/releases).
+Kompose is released via GitHub on a three-week cycle, you can see all current releases on the [GitHub release page](https://github.com/kelda-inc/compose-to-kelda/releases).
 
 __Linux and macOS:__
 
 ```sh
 # Linux
-curl -L https://github.com/kubernetes/kompose/releases/download/v1.18.0/kompose-linux-amd64 -o kompose
+curl -L https://github.com/kelda-inc/compose-to-kelda/releases/download/v1.18.0/kompose-linux-amd64 -o kompose
 
 # macOS
-curl -L https://github.com/kubernetes/kompose/releases/download/v1.18.0/kompose-darwin-amd64 -o kompose
+curl -L https://github.com/kelda-inc/compose-to-kelda/releases/download/v1.18.0/kompose-darwin-amd64 -o kompose
 
 chmod +x kompose
 sudo mv ./kompose /usr/local/bin/kompose
@@ -56,7 +56,7 @@ sudo mv ./kompose /usr/local/bin/kompose
 
 __Windows:__
 
-Download from [GitHub](https://github.com/kubernetes/kompose/releases/download/v1.18.0/kompose-windows-amd64.exe) and add the binary to your PATH.
+Download from [GitHub](https://github.com/kelda-inc/compose-to-kelda/releases/download/v1.18.0/kompose-windows-amd64.exe) and add the binary to your PATH.
 
 ## Shell autocompletion
 
@@ -81,7 +81,7 @@ __Requisites:__
 __Steps:__
 1. Clone repository
 ```console
-$ git clone https://github.com/kubernetes/kompose.git $GOPATH/src/github.com/kubernetes/kompose
+$ git clone https://github.com/kelda-inc/compose-to-kelda.git $GOPATH/src/github.com/kelda-inc/compose-to-kelda
 ```
 2. Build with `make`
 ```console
@@ -98,7 +98,7 @@ $ make test
 
 ## Documentation
 
-Documentation can be found at our [kompose.io](http://kompose.io) website or our [docs](https://github.com/kubernetes/kompose/tree/master/docs) folder.
+Documentation can be found at our [kompose.io](http://kompose.io) website or our [docs](https://github.com/kelda-inc/compose-to-kelda/tree/master/docs) folder.
 
 Here is a list of all available docs:
 
@@ -111,7 +111,7 @@ Here is a list of all available docs:
 
 ## Community, Discussion, Contribution, and Support
 
-__Issues:__ If you find any issues, please [file it](https://github.com/kubernetes/kompose/issues).
+__Issues:__ If you find any issues, please [file it](https://github.com/kelda-inc/compose-to-kelda/issues).
 
 __Kubernetes Community:__ As part of the Kubernetes ecosystem, we follow the Kubernetes community principles. More information can be found on the [community page](http://kubernetes.io/community/).
 
@@ -122,11 +122,11 @@ __Chat (Slack):__ We're fairly active on [Slack](http://slack.kubernetes.io#komp
 
 Participation in the Kubernetes community is governed by the [Kubernetes Code of Conduct](code-of-conduct.md).
 
-[Build Status]: https://travis-ci.org/kubernetes/kompose
-[Build Status Widget]: https://travis-ci.org/kubernetes/kompose.svg?branch=master
-[GoDoc]: https://godoc.org/github.com/kubernetes/kompose
-[GoDoc Widget]: https://godoc.org/github.com/kubernetes/kompose?status.svg
-[Coverage Status Widget]: https://coveralls.io/repos/github/kubernetes/kompose/badge.svg?branch=master
-[Coverage Status]: https://coveralls.io/github/kubernetes/kompose?branch=master
-[GoReportCard Widget]: https://goreportcard.com/badge/github.com/kubernetes/kompose
-[GoReportCardResult]: https://goreportcard.com/report/github.com/kubernetes/kompose
+[Build Status]: https://travis-ci.org/kelda-inc/compose-to-kelda
+[Build Status Widget]: https://travis-ci.org/kelda-inc/compose-to-kelda.svg?branch=master
+[GoDoc]: https://godoc.org/github.com/kelda-inc/compose-to-kelda
+[GoDoc Widget]: https://godoc.org/github.com/kelda-inc/compose-to-kelda?status.svg
+[Coverage Status Widget]: https://coveralls.io/repos/github/kelda-inc/compose-to-kelda/badge.svg?branch=master
+[Coverage Status]: https://coveralls.io/github/kelda-inc/compose-to-kelda?branch=master
+[GoReportCard Widget]: https://goreportcard.com/badge/github.com/kelda-inc/compose-to-kelda
+[GoReportCardResult]: https://goreportcard.com/report/github.com/kelda-inc/compose-to-kelda

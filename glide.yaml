@@ -1,5 +1,5 @@
-package: github.com/kubernetes/kompose
-homepage: https://github.com/kubernetes/kompose
+package: github.com/kelda-inc/compose-to-kelda
+homepage: https://github.com/kelda-inc/compose-to-kelda
 licence: Apache-2.0
 
 import:

@@ -24,8 +24,8 @@ import (
 	"time"
 
 	"github.com/fatih/structs"
-	"github.com/kubernetes/kompose/pkg/kobject"
-	"github.com/kubernetes/kompose/pkg/transformer"
+	"github.com/kelda-inc/compose-to-kelda/pkg/kobject"
+	"github.com/kelda-inc/compose-to-kelda/pkg/transformer"
 	buildapi "github.com/openshift/origin/pkg/build/api"
 	deployapi "github.com/openshift/origin/pkg/deploy/api"
 	log "github.com/sirupsen/logrus"
@@ -49,7 +49,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/kubernetes/kompose/pkg/loader/compose"
+	"github.com/kelda-inc/compose-to-kelda/pkg/loader/compose"
 	"github.com/pkg/errors"
 	"k8s.io/kubernetes/pkg/api/meta"
 	"k8s.io/kubernetes/pkg/labels"

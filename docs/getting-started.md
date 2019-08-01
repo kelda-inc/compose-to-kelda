@@ -15,7 +15,7 @@ In this guide, we'll deploy a sample `docker-compose.yaml` file to a Kubernetes 
 
 Requirements:
   - [minikube](https://github.com/kubernetes/minikube)
-  - [kompose](https://github.com/kubernetes/kompose)
+  - [kompose](https://github.com/kelda-inc/compose-to-kelda)
 
 __Start `minikube`:__
 
@@ -34,10 +34,10 @@ Starting cluster components...
 Kubectl is now configured to use the cluster
 ```
 
-__Download an [example Docker Compose file](https://raw.githubusercontent.com/kubernetes/kompose/master/examples/docker-compose.yaml), or use your own:__
+__Download an [example Docker Compose file](https://raw.githubusercontent.com/kelda-inc/compose-to-kelda/master/examples/docker-compose.yaml), or use your own:__
 
 ```sh
-wget https://raw.githubusercontent.com/kubernetes/kompose/master/examples/docker-compose.yaml
+wget https://raw.githubusercontent.com/kelda-inc/compose-to-kelda/master/examples/docker-compose.yaml
 ```
 
 __Convert your Docker Compose file to Kubernetes:__
@@ -119,7 +119,7 @@ In this guide, we'll deploy a sample `docker-compose.yaml` file to an OpenShift 
 
 Requirements:
   - [minishift](https://github.com/minishift/minishift)
-  - [kompose](https://github.com/kubernetes/kompose)
+  - [kompose](https://github.com/kelda-inc/compose-to-kelda)
   - An OpenShift route created
 
 __Note:__ The service will NOT be accessible until you create an OpenShift route with `oc expose`. You must also have a virtualization environment setup. By default, `minishift` uses KVM.
@@ -138,10 +138,10 @@ Starting local OpenShift cluster using 'kvm' hypervisor...
 ...
 ```
 
-__Download an [example Docker Compose file](https://raw.githubusercontent.com/kubernetes/kompose/master/examples/docker-compose.yaml), or use your own:__
+__Download an [example Docker Compose file](https://raw.githubusercontent.com/kelda-inc/compose-to-kelda/master/examples/docker-compose.yaml), or use your own:__
 
 ```sh
-wget https://raw.githubusercontent.com/kubernetes/kompose/master/examples/docker-compose.yaml
+wget https://raw.githubusercontent.com/kelda-inc/compose-to-kelda/master/examples/docker-compose.yaml
 ```
 
 __Convert your Docker Compose file to OpenShift:__
@@ -218,7 +218,7 @@ Requirements:
   - [Red Hat Development Suite](https://developers.redhat.com/products/devsuite/overview/)
     - Which includes:
     - [minishift](https://github.com/minishift/minishift)
-    - [kompose](https://github.com/kubernetes/kompose)
+    - [kompose](https://github.com/kelda-inc/compose-to-kelda)
 
 __Note:__ A KVM hypervisor must be setup in order to correctly use `minishift` on RHEL. You can set it up via the [CDK Documentation](https://access.redhat.com/documentation/en-us/red_hat_container_development_kit/3.1/html-single/getting_started_guide/index#setup-virtualization) under "Set up your virtualization environment".
 
@@ -276,10 +276,10 @@ Starting local OpenShift cluster using 'kvm' hypervisor...
 ...
 ```
 
-__Download an [example Docker Compose file](https://raw.githubusercontent.com/kubernetes/kompose/master/examples/docker-compose.yaml), or use your own:__
+__Download an [example Docker Compose file](https://raw.githubusercontent.com/kelda-inc/compose-to-kelda/master/examples/docker-compose.yaml), or use your own:__
 
 ```sh
-wget https://raw.githubusercontent.com/kubernetes/kompose/master/examples/docker-compose.yaml
+wget https://raw.githubusercontent.com/kelda-inc/compose-to-kelda/master/examples/docker-compose.yaml
 ```
 
 __Convert your Docker Compose file to OpenShift:__

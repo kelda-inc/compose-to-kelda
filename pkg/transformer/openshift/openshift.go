@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/kubernetes/kompose/pkg/kobject"
-	"github.com/kubernetes/kompose/pkg/transformer/kubernetes"
+	"github.com/kelda-inc/compose-to-kelda/pkg/kobject"
+	"github.com/kelda-inc/compose-to-kelda/pkg/transformer/kubernetes"
 
 	log "github.com/sirupsen/logrus"
 
@@ -39,7 +39,7 @@ import (
 
 	"sort"
 
-	"github.com/kubernetes/kompose/pkg/transformer"
+	"github.com/kelda-inc/compose-to-kelda/pkg/transformer"
 	buildapi "github.com/openshift/origin/pkg/build/api"
 	buildconfigreaper "github.com/openshift/origin/pkg/build/cmd"
 	deployapi "github.com/openshift/origin/pkg/deploy/api"

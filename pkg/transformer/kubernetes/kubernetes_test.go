@@ -23,8 +23,8 @@ import (
 
 	deployapi "github.com/openshift/origin/pkg/deploy/api"
 
-	"github.com/kubernetes/kompose/pkg/kobject"
-	"github.com/kubernetes/kompose/pkg/transformer"
+	"github.com/kelda-inc/compose-to-kelda/pkg/kobject"
+	"github.com/kelda-inc/compose-to-kelda/pkg/transformer"
 
 	"github.com/pkg/errors"
 	"k8s.io/kubernetes/pkg/api"

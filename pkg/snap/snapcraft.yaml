@@ -23,11 +23,11 @@ apps:
 parts:
   kompose:
   plugin: nil 
-    source: https://github.com/kubernetes/kompose.git
+    source: https://github.com/kelda-inc/compose-to-kelda.git
     source-type: git
     override-pull: |
-      git clone https://github.com/kubernetes/kompose.git src/github.com/kubernetes/kompose
-      cd src/github.com/kubernetes/kompose
+      git clone https://github.com/kelda-inc/compose-to-kelda.git src/github.com/kelda-inc/compose-to-kelda
+      cd src/github.com/kelda-inc/compose-to-kelda
       last_committed_tag="$(git describe --tags --abbrev=0)"
       last_committed_tag_ver="$(echo ${last_committed_tag} | sed 's/v//')"
       last_released_tag="$(snap info $SNAPCRAFT_PROJECT_NAME | awk '$1 == "beta:" { print $2 }')"
@@ -40,11 +40,11 @@ parts:
       snapcraftctl set-version "$(git describe --tags | sed 's/v//')"
       override-build: |
       export GOPATH=$PWD
-      cd src/github.com/kubernetes/kompose
+      cd src/github.com/kelda-inc/compose-to-kelda
       env CGO_ENABLED=0 GOOS=linux \
       go build --ldflags "-s -w \
-        -X 'github.com/kubernetes/kompose/version.GitCommit=$(git rev-list -1 HEAD)' \
-        -X 'github.com/kubernetes/kompose/version.Version=$(git describe --tags --abbrev=0)'" \
+        -X 'github.com/kelda-inc/compose-to-kelda/version.GitCommit=$(git rev-list -1 HEAD)' \
+        -X 'github.com/kelda-inc/compose-to-kelda/version.Version=$(git describe --tags --abbrev=0)'" \
         -a -installsuffix cgo -o $SNAPCRAFT_PART_INSTALL/bin/kompose
     build-snaps:
       - go

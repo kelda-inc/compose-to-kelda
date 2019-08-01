@@ -19,7 +19,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/kubernetes/kompose/pkg/version"
+	"github.com/kelda-inc/compose-to-kelda/pkg/version"
 	"github.com/spf13/cobra"
 )
 

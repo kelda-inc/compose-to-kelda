@@ -23,8 +23,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/kubernetes/kompose/pkg/kobject"
-	"github.com/kubernetes/kompose/pkg/testutils"
+	"github.com/kelda-inc/compose-to-kelda/pkg/kobject"
+	"github.com/kelda-inc/compose-to-kelda/pkg/testutils"
 
 	"reflect"
 

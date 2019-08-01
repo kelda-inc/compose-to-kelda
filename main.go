@@ -16,7 +16,7 @@ limitations under the License.
 
 package main
 
-import "github.com/kubernetes/kompose/cmd"
+import "github.com/kelda-inc/compose-to-kelda/cmd"
 
 func main() {
 	cmd.Execute()

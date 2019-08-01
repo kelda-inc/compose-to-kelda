@@ -22,7 +22,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/kubernetes/kompose/pkg/kobject"
+	"github.com/kelda-inc/compose-to-kelda/pkg/kobject"
 	"k8s.io/kubernetes/pkg/api"
 
 	"time"

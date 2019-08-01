@@ -2,12 +2,12 @@
 
 ## Building Kompose
 
-Read about building kompose [here](https://github.com/kubernetes/kompose#building).
+Read about building kompose [here](https://github.com/kelda-inc/compose-to-kelda#building).
 
 ## Workflow
 ### Fork the main repository
 
-1. Go to https://github.com/kubernetes/kompose
+1. Go to https://github.com/kelda-inc/compose-to-kelda
 2. Click the "Fork" button (at the top right)
 
 ### Clone your fork
@@ -15,9 +15,9 @@ Read about building kompose [here](https://github.com/kubernetes/kompose#buildin
 The commands below require that you have $GOPATH. We highly recommended you put Kompose' code into your $GOPATH.
 
 ```console
-git clone https://github.com/$YOUR_GITHUB_USERNAME/kompose.git $GOPATH/src/github.com/kubernetes/kompose
-cd $GOPATH/src/github.com/kubernetes/kompose
-git remote add upstream 'https://github.com/kubernetes/kompose'
+git clone https://github.com/$YOUR_GITHUB_USERNAME/kompose.git $GOPATH/src/github.com/kelda-inc/compose-to-kelda
+cd $GOPATH/src/github.com/kelda-inc/compose-to-kelda
+git remote add upstream 'https://github.com/kelda-inc/compose-to-kelda'
 ```
 
 ### Create a branch and make changes
@@ -34,7 +34,7 @@ git fetch upstream
 git rebase upstream/master
 ```
 
-Note: If you have write access to the main repository at github.com/kubernetes/kompose, you should modify your git configuration so that you can't accidentally push to upstream:
+Note: If you have write access to the main repository at github.com/kelda-inc/compose-to-kelda, you should modify your git configuration so that you can't accidentally push to upstream:
 
 ```console
 git remote set-url --push upstream no_push
@@ -108,7 +108,7 @@ Currently it is not possible to use different Kubernetes version from version th
 
 ### Adding CLI tests
 
-[Kompose CLI tests](https://github.com/kubernetes/kompose/tree/master/script/test/cmd) run `kompose convert` with docker-compose files, and cross-check the k8s and OpenShift artifacts generated with the template files.
+[Kompose CLI tests](https://github.com/kelda-inc/compose-to-kelda/tree/master/script/test/cmd) run `kompose convert` with docker-compose files, and cross-check the k8s and OpenShift artifacts generated with the template files.
 
 To generate CLI tests, please run `make gen-cmd`.
 
@@ -116,6 +116,6 @@ To generate CLI tests, please run `make gen-cmd`.
 
 For Kompose, we use numerous CI's:
 
-   - [TravisCI](https://travis-ci.org/kubernetes/kompose): Unit and CLI tests
+   - [TravisCI](https://travis-ci.org/kelda-inc/compose-to-kelda): Unit and CLI tests
    - [SemaphoreCI](https://semaphoreci.com/cdrage/kompose-2): Integration / cluster tests
    - [Fabric8CI](http://jenkins.cd.k8s.fabric8.io/): Secondary integration tests / future cluster tests
