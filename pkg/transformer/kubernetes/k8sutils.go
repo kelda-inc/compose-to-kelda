@@ -19,7 +19,6 @@ package kubernetes
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"os"
 	"path"
@@ -150,101 +149,37 @@ func getDirName(opt kobject.ConvertOptions) string {
 
 // PrintList will take the data converted and decide on the commandline attributes given
 func PrintList(objects []runtime.Object, opt kobject.ConvertOptions) error {
-
-	var f *os.File
-	dirName := getDirName(opt)
-	log.Debugf("Target Dir: %s", dirName)
-
-	// Check if output file is a directory
-	isDirVal, err := isDir(opt.OutFile)
-	if err != nil {
-		return errors.Wrap(err, "isDir failed")
-	}
-	if opt.CreateChart {
-		isDirVal = true
-	}
-	if !isDirVal {
-		f, err = transformer.CreateOutFile(opt.OutFile)
-		if err != nil {
-			return errors.Wrap(err, "transformer.CreateOutFile failed")
-		}
-		defer f.Close()
-	}
-
-	var files []string
-
-	// if asked to print to stdout or to put in single file
-	// we will create a list
-	if opt.ToStdout || f != nil {
-		list := &api.List{}
-		// convert objects to versioned and add them to list
-		for _, object := range objects {
-			versionedObject, err := convertToVersion(object, unversioned.GroupVersion{})
-			if err != nil {
-				return err
-			}
-
-			list.Items = append(list.Items, versionedObject)
-
-		}
-		// version list itself
-		listVersion := unversioned.GroupVersion{Group: "", Version: "v1"}
-		convertedList, err := convertToVersion(list, listVersion)
+	for _, v := range objects {
+		versionedObject, err := convertToVersion(v, unversioned.GroupVersion{})
 		if err != nil {
 			return err
 		}
-		data, err := marshal(convertedList, opt.GenerateJSON)
+		data, err := marshal(versionedObject, opt.GenerateJSON)
 		if err != nil {
-			return fmt.Errorf("error in marshalling the List: %v", err)
+			return err
 		}
-		printVal, err := transformer.Print("", dirName, "", data, opt.ToStdout, opt.GenerateJSON, f, opt.Provider)
+
+		val := reflect.ValueOf(v).Elem()
+		// Use reflect to access TypeMeta struct inside runtime.Object.
+		// cast it to correct type - unversioned.TypeMeta
+		typeMeta := val.FieldByName("TypeMeta").Interface().(unversioned.TypeMeta)
+
+		// Use reflect to access ObjectMeta struct inside runtime.Object.
+		// cast it to correct type - api.ObjectMeta
+		objectMeta := val.FieldByName("ObjectMeta").Interface().(api.ObjectMeta)
+
+		svcName, ok := objectMeta.Labels[transformer.Selector]
+		if !ok {
+			return errors.New("failed to get object's service name")
+		}
+
+		dir := filepath.Join("kelda-config", svcName)
+		if err := os.MkdirAll(dir, 0755); err != nil {
+			return errors.Wrap(err, "mkdir")
+		}
+		_, err = transformer.Print(objectMeta.Name, dir, strings.ToLower(typeMeta.Kind), data, opt.ToStdout, opt.GenerateJSON, nil, opt.Provider)
 		if err != nil {
 			return errors.Wrap(err, "transformer.Print failed")
-		}
-		files = append(files, printVal)
-	} else {
-		finalDirName := dirName
-		if opt.CreateChart {
-			finalDirName = dirName + string(os.PathSeparator) + "templates"
-		}
-
-		if err := os.MkdirAll(finalDirName, 0755); err != nil {
-			return err
-		}
-
-		var file string
-		// create a separate file for each provider
-		for _, v := range objects {
-			versionedObject, err := convertToVersion(v, unversioned.GroupVersion{})
-			if err != nil {
-				return err
-			}
-			data, err := marshal(versionedObject, opt.GenerateJSON)
-			if err != nil {
-				return err
-			}
-
-			val := reflect.ValueOf(v).Elem()
-			// Use reflect to access TypeMeta struct inside runtime.Object.
-			// cast it to correct type - unversioned.TypeMeta
-			typeMeta := val.FieldByName("TypeMeta").Interface().(unversioned.TypeMeta)
-
-			// Use reflect to access ObjectMeta struct inside runtime.Object.
-			// cast it to correct type - api.ObjectMeta
-			objectMeta := val.FieldByName("ObjectMeta").Interface().(api.ObjectMeta)
-
-			file, err = transformer.Print(objectMeta.Name, finalDirName, strings.ToLower(typeMeta.Kind), data, opt.ToStdout, opt.GenerateJSON, f, opt.Provider)
-			if err != nil {
-				return errors.Wrap(err, "transformer.Print failed")
-			}
-
-			files = append(files, file)
-		}
-	}
-	if opt.CreateChart {
-		err = generateHelm(dirName)
-		if err != nil {
-			return errors.Wrap(err, "generateHelm failed")
 		}
 	}
 	return nil
