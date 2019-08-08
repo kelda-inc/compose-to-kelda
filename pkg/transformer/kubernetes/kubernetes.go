@@ -124,13 +124,11 @@ func (k *Kubernetes) InitPodSpec(name string, image string, pullSecret string) a
 				Image: image,
 			},
 		},
-	}
-	if pullSecret != "" {
-		pod.ImagePullSecrets = []api.LocalObjectReference{
+		ImagePullSecrets: []api.LocalObjectReference{
 			{
-				Name: pullSecret,
+				Name: "regcred",
 			},
-		}
+		},
 	}
 	return pod
 }
@@ -174,6 +172,11 @@ func (k *Kubernetes) InitPodSpecWithConfigMap(name string, image string, service
 				Name:         name,
 				Image:        image,
 				VolumeMounts: volumeMounts,
+			},
+		},
+		ImagePullSecrets: []api.LocalObjectReference{
+			{
+				Name: "regcred",
 			},
 		},
 		Volumes: volumes,
