@@ -17,8 +17,11 @@ limitations under the License.
 package app
 
 import (
+	"io/ioutil"
 	"strings"
 
+	"github.com/ghodss/yaml"
+	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
@@ -40,6 +43,25 @@ import (
 	"github.com/kelda-inc/compose-to-kelda/pkg/transformer/kubernetes"
 	"github.com/kelda-inc/compose-to-kelda/pkg/transformer/openshift"
 )
+
+// Workspace contains the main development environment configuration.
+type Workspace struct {
+	Version  string    `json:"version,omitempty"`
+	Services []Service `json:"services"`
+	Tunnels  []Tunnel  `json:"tunnels"`
+}
+
+// Tunnel defines a desired tunnel between a local port and a service in the
+// development environment.
+type Tunnel struct {
+	ServiceName string `json:"serviceName"`
+	LocalPort   uint32 `json:"localPort"`
+	RemotePort  uint32 `json:"remotePort"`
+}
+
+type Service struct {
+	Name string `json:"name"`
+}
 
 const (
 	// DefaultComposeFile name of the file that kompose will use if no file is explicitly set
@@ -246,11 +268,42 @@ func Convert(opt kobject.ConvertOptions) {
 		log.Fatalf(err.Error())
 	}
 
+	if err := os.Mkdir("kelda-config", 0755); err != nil {
+		log.Fatalf("make kelda config dir", err)
+	}
+
 	// Print output
 	err = kubernetes.PrintList(objects, opt)
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
+
+	ws := Workspace{Version: "v1alpha1"}
+	for name, svc := range komposeObject.ServiceConfigs {
+		ws.Services = append(ws.Services, Service{Name: name})
+		for _, port := range svc.Port {
+			ws.Tunnels = append(ws.Tunnels, Tunnel{
+				ServiceName: name,
+				LocalPort:   uint32(port.HostPort),
+				RemotePort:  uint32(port.ContainerPort),
+			})
+		}
+	}
+	if err := writeWorkspace(ws, "kelda-config/workspace.yaml"); err != nil {
+		log.Fatalf(err.Error())
+	}
+}
+
+func writeWorkspace(ws Workspace, path string) error {
+	yamlBytes, err := yaml.Marshal(ws)
+	if err != nil {
+		return errors.Wrap(err, "marshal")
+	}
+
+	if err := ioutil.WriteFile(path, yamlBytes, 0644); err != nil {
+		return errors.Wrap(err, "write")
+	}
+	return nil
 }
 
 // Up brings up deployment, svc.
